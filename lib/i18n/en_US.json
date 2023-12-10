@@ -1,0 +1,14 @@
+{
+  "show-table":"Show As Table",
+  "no-data":"No Data Loaded",
+  "no-data-found":"No Data Found",
+  "msg-error":"Error",
+  "loader-text":"Loading",
+  "nothing-to-click":"Unable to drill down deeper",
+  "click-cancel":"click to cancel",
+
+  "total-record":"Based on %s records.",
+  "total-record2":"Based on %s of %s records.",
+
+  "filter-title":"Filter by %s"
+}
