@@ -10,9 +10,7 @@ import 'dart:convert';
 import '/model/UserModel.dart';
 
 /// The scopes required by this application.
-const List<String> scopes = <String>[
-  'email',
-];
+const List<String> scopes = <String>[];
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
   // Optional clientId
@@ -24,11 +22,16 @@ class GoogleLogin extends StatefulWidget {
   const GoogleLogin({
     super.key,
   });
+
   @override
   State<GoogleLogin> createState() => _GoogleLogin();
 }
 
 class _GoogleLogin extends State<GoogleLogin> {
+  void disconnect() {
+    _googleSignIn.disconnect();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -41,6 +44,9 @@ class _GoogleLogin extends State<GoogleLogin> {
       if (kIsWeb && account != null) {
         isAuthorized = await _googleSignIn.canAccessScopes(scopes);
       }
+      print(account!.displayName);
+      print(isAuthorized);
+      print(account);
       UserModel().saveUser(account!.displayName, "GoogleLogin", {
         "isAuthorized": isAuthorized,
         "info": account,

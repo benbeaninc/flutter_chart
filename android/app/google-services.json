@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "155426004772",
+    "project_id": "flutterchart-f82da",
+    "storage_bucket": "flutterchart-f82da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:155426004772:android:e1c7a217435e1e61689db1",
+        "android_client_info": {
+          "package_name": "flutter.chart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR5cs2_ZLiaz1-3WnCrih28Jjmg13n2yE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

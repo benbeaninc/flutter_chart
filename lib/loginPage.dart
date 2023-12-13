@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/element/login/googleLogin/GoogleLogin.dart';
+//import '/element/login/fbLogin/fbLogin.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({
@@ -17,7 +18,7 @@ class _LoginPage extends State<LoginPage> {
         appBar: AppBar(),
         body: ConstrainedBox(
           constraints: const BoxConstraints.expand(),
-          child: GoogleLogin(),
+          child: const GoogleLogin(),
         ));
   }
 }

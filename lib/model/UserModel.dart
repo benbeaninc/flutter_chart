@@ -4,6 +4,7 @@ import '/model/Model.dart';
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '/element/login/googleLogin/GoogleLogin.dart';
 
 class UserModel extends Model {
   late String? username;
@@ -32,18 +33,27 @@ class UserModel extends Model {
     Get.put(prefs);
   }
 
+  void logout() {
+    if (origin == 'GoogleLogin') {
+      final GoogleLogin _googleSignIn = GoogleLogin();
+
+      //_googleSignIn.disconnect();
+    }
+  }
+
   UserModel? getUser() {
-    SharedPreferences _pref = Get.find();
-    String username = _pref.getString('username') ?? "";
+    SharedPreferences pref = Get.find();
+    String username = pref.getString('username') ?? "";
     if (username == '') {
       return null;
     }
 
-    String loginOrigin = _pref.getString('loginOrigin') ?? "";
+    String loginOrigin = pref.getString('loginOrigin') ?? "";
     if (loginOrigin == '') {
       return null;
     }
-    String userData = _pref.getString('userData') ?? "{}";
+
+    String userData = pref.getString('userData') ?? "{}";
     if (userData != '') {
       return null;
     }

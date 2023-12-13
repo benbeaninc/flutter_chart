@@ -3,7 +3,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Model {
   Future<void> initSharedPref() async {
-    SharedPreferences.setMockInitialValues({});
+    SharedPreferences.setMockInitialValues({
+      'username': '',
+      'loginOrigin': '',
+      'userData': '{}',
+    });
   }
 
   Future<dynamic> getSharedPref(String code, {String type = 'string'}) async {

@@ -11,6 +11,7 @@ import 'element/input/dialog.dart';
 import 'model/ShoppingModel.dart';
 import 'blankPage.dart';
 import 'package:intl/intl.dart';
+import 'LoginPage.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({
@@ -156,42 +157,40 @@ class _HomePage extends State<HomePage> {
     Widget showChart(data) {
       double screenWidth = MediaQuery.of(context).size.width;
       return Scaffold(
-        appBar: AppBar(
-          actions: [
-            Padding(
-                padding: const EdgeInsets.only(right: 20.0),
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      widget.viewMode =
-                          widget.viewMode == 'chart' ? 'table' : 'chart';
-                    });
-                  },
-                  child: Icon(
-                    widget.viewMode == 'chart'
-                        ? Icons.table_chart_rounded
-                        : Icons.pie_chart,
-                    size: 26.0,
-                  ),
-                ))
-          ],
-          title: InkWell(
-            onTap: () {
-              setState(() {
-                widget.filters = [];
-                widget.filterValues = {};
-                widget.selectedFilter = ShoppingModel().firstFilter();
-              });
-              /*
+          appBar: AppBar(
+            actions: [
+              Padding(
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => LoginPage()));
+                    },
+                    child: Icon(
+                      widget.viewMode == 'chart'
+                          ? Icons.table_chart_rounded
+                          : Icons.pie_chart,
+                      size: 26.0,
+                    ),
+                  ))
+            ],
+            title: InkWell(
+              onTap: () {
+                setState(() {
+                  widget.filters = [];
+                  widget.filterValues = {};
+                  widget.selectedFilter = ShoppingModel().firstFilter();
+                });
+                /*
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => profileDetail()));*/
-            },
-            child: Text(widget.title),
+              },
+              child: Text(widget.title),
+            ),
           ),
-        ),
-        body:
-            widget.viewMode == 'chart' ? renderChart(data) : renderTable(data),
-      );
+          body: renderChart(data)
+          //widget.viewMode == 'chart' ? renderChart(data) : renderTable(data),
+          );
     }
 
     return LayoutBuilder(builder: (context, constraints) {
