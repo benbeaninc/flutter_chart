@@ -96,6 +96,7 @@ class _HomePage extends State<HomePage> {
           child: Datatable(
             data,
             widget.fields,
+            getFilterByIndex(),
           ),
         )
       ]);
@@ -157,40 +158,47 @@ class _HomePage extends State<HomePage> {
     Widget showChart(data) {
       double screenWidth = MediaQuery.of(context).size.width;
       return Scaffold(
-          appBar: AppBar(
-            actions: [
-              Padding(
-                  padding: const EdgeInsets.only(right: 20.0),
-                  child: GestureDetector(
-                    onTap: () {
+        appBar: AppBar(
+          actions: [
+            Padding(
+                padding: const EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () {
+                    /*
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) => LoginPage()));
-                    },
-                    child: Icon(
-                      widget.viewMode == 'chart'
-                          ? Icons.table_chart_rounded
-                          : Icons.pie_chart,
-                      size: 26.0,
-                    ),
-                  ))
-            ],
-            title: InkWell(
-              onTap: () {
-                setState(() {
-                  widget.filters = [];
-                  widget.filterValues = {};
-                  widget.selectedFilter = ShoppingModel().firstFilter();
-                });
-                /*
+                          */
+                    setState(() {
+                      widget.viewMode =
+                          widget.viewMode == 'chart' ? 'table' : 'chart';
+                    });
+                  },
+                  child: Icon(
+                    widget.viewMode == 'chart'
+                        ? Icons.table_chart_rounded
+                        : Icons.pie_chart,
+                    size: 26.0,
+                  ),
+                ))
+          ],
+          title: InkWell(
+            onTap: () {
+              setState(() {
+                widget.filters = [];
+                widget.filterValues = {};
+                widget.selectedFilter = ShoppingModel().firstFilter();
+              });
+              /*
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => profileDetail()));*/
-              },
-              child: Text(widget.title),
-            ),
+            },
+            child: Text(widget.title),
           ),
-          body: renderChart(data)
-          //widget.viewMode == 'chart' ? renderChart(data) : renderTable(data),
-          );
+        ),
+        //body: renderChart(data)
+        body:
+            widget.viewMode == 'chart' ? renderChart(data) : renderTable(data),
+      );
     }
 
     return LayoutBuilder(builder: (context, constraints) {

@@ -37,7 +37,9 @@ class MyApp extends StatelessWidget {
               }
               return HomePage(title: 'Shopping Trend');
             }
-            return LoginPage();
+            return HomePage(title: 'Shopping Trend');
+
+            //return LoginPage();
           }
           return showLoadingPage();
         });

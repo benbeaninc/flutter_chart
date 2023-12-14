@@ -31,12 +31,14 @@ class DataModel extends Model {
   getFilterData(data, filter, filterValues) {
     Map<String, int> compile = {};
     Map<String, String> map = {};
+    List<List<dynamic>> filtered_data = [];
     int total = 0;
     data.forEach((node) {
-      if (node[filter] == null) {
+      if (filter != null && node[filter] == null) {
         return;
       }
       bool isFiltered = false;
+
       filterValues.forEach((f, v) {
         if (isFiltered) return;
         if (node[f] == null) {
@@ -47,16 +49,19 @@ class DataModel extends Model {
         }
       });
       if (isFiltered) return;
-      String code = node[filter].toString();
-      map[code] = code;
-      if (compile[code] == null) compile[code] = 0;
-      compile[code] = (compile[code]! + 1);
+      filtered_data.add(node);
+      if (filter != null) {
+        String code = node[filter].toString();
+        map[code] = code;
+        if (compile[code] == null) compile[code] = 0;
+        compile[code] = (compile[code]! + 1);
+      }
       total = total + 1;
     });
     List<DataRowModel> ret = [];
     compile.forEach((index, node) {
       ret.add(DataRowModel(index, node));
     });
-    return {"data": ret, "map": map, "total": total};
+    return {"data": ret, "map": map, "total": total, 'filtered': filtered_data};
   }
 }

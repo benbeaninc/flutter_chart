@@ -6,7 +6,8 @@
   "loader-text":"Loading",
   "nothing-to-click":"Unable to drill down deeper",
   "click-cancel":"click to cancel",
-
+  "prev-page":"Previous Page",
+  "next-page":"Next Page",
   "total-record":"Based on %s records.",
   "total-record2":"Based on %s of %s records.",
 
